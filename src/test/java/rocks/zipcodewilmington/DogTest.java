@@ -5,6 +5,8 @@ import org.junit.Test;
 import rocks.zipcodewilmington.animals.Animal;
 import rocks.zipcodewilmington.animals.Dog;
 import rocks.zipcodewilmington.animals.Mammal;
+import rocks.zipcodewilmington.animals.animal_creation.AnimalFactory;
+import rocks.zipcodewilmington.animals.animal_storage.DogHouse;
 
 import java.util.Date;
 
@@ -33,6 +35,19 @@ public class DogTest {
         Assert.assertEquals(dogName, givenName);
     }
 
+    @Test
+    public void testCreateNewDog() {
+        // Given
+        String expectedName = "Bonnie";
+        Date expectedDate = new Date();
+        Integer expectedNumberOfDogs = 1;
+        // When
+        Dog animal = AnimalFactory.createDog(expectedName, expectedDate);
+        DogHouse.add(animal);
+        Integer actualNumberOfDogs = DogHouse.getNumberOfDogs();
+        // Then
+        Assert.assertEquals(expectedNumberOfDogs, actualNumberOfDogs);
+    }
     @Test
     public void testSpeak() {
         //Given (dog data)
